@@ -1,0 +1,489 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f6f9fc;
+    color: #172033;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    background: #0f2942;
+    padding: 18px 0;
+}
+
+.navbar-brand {
+    font-size: 23px;
+}
+
+.nav-link {
+    margin-left: 20px;
+    color: rgba(255, 255, 255, 0.75) !important;
+    transition: 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: white !important;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+
+    background:
+            radial-gradient(circle at 90% 20%, #d9f5ed, transparent 35%),
+            linear-gradient(135deg, #f7fbff, #eef8f5);
+
+    padding: 90px 0;
+}
+
+
+.badge {
+    background: #dff5ee;
+    color: #16775e;
+    padding: 10px 15px;
+    font-weight: 500;
+}
+
+
+.hero h1 {
+    font-size: 55px;
+    font-weight: 700;
+    line-height: 1.1;
+    max-width: 600px;
+}
+
+.hero h1 span {
+    color: #1c9c78;
+}
+
+
+.hero-text {
+    color: #687386;
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 580px;
+    margin-top: 20px;
+}
+
+
+/* ================= SEARCH ================= */
+
+.search-box {
+    margin-top: 30px;
+    max-width: 620px;
+}
+
+.input-group {
+    background: white;
+    padding: 8px;
+    border-radius: 14px;
+
+    box-shadow: 0 10px 35px rgba(20, 50, 80, 0.08);
+}
+
+.input-group-text {
+    background: white;
+    border: none;
+    font-size: 20px;
+}
+
+.form-control {
+    border: none;
+    box-shadow: none !important;
+}
+
+.search-btn {
+    background: #178f70;
+    color: white;
+
+    border-radius: 10px !important;
+    padding: 12px 22px;
+
+    transition: 0.3s;
+}
+
+.search-btn:hover {
+    background: #11735a;
+    color: white;
+    transform: translateY(-1px);
+}
+
+
+/* ================= QUICK CITY ================= */
+
+.quick-cities {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.quick-cities small {
+    color: #7b8494;
+}
+
+.city-btn {
+    border: 1px solid #d7e1e8;
+    background: white;
+
+    padding: 6px 13px;
+
+    border-radius: 20px;
+
+    color: #596577;
+    font-size: 13px;
+
+    transition: 0.3s;
+}
+
+.city-btn:hover {
+    background: #178f70;
+    border-color: #178f70;
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* ================= AIR CARD ================= */
+
+.air-card {
+    max-width: 440px;
+    min-height: 390px;
+
+    margin: auto;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    border-radius: 24px;
+
+    padding: 40px;
+
+    box-shadow: 0 25px 60px rgba(26, 59, 84, 0.12);
+
+    transition: 0.4s;
+}
+
+.air-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 70px rgba(26, 59, 84, 0.17);
+}
+
+
+/* ================= WELCOME ================= */
+
+#welcomeState {
+    text-align: center;
+    padding-top: 45px;
+}
+
+.weather-icon {
+    width: 90px;
+    height: 90px;
+
+    margin: auto auto 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e4f7f1;
+
+    font-size: 43px;
+
+    color: #178f70;
+
+    animation: floating 3s ease-in-out infinite;
+}
+
+#welcomeState p {
+    color: #7b8494;
+    line-height: 1.7;
+}
+
+
+/* ================= ANIMATION ================= */
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+}
+
+
+/* ================= LOADING ================= */
+
+#loadingState {
+    text-align: center;
+    padding-top: 80px;
+}
+
+.spinner-border {
+    color: #178f70;
+}
+
+
+/* ================= RESULT ================= */
+
+.result-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: #8b94a3;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.location-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e4f7f1;
+    color: #178f70;
+
+    border-radius: 12px;
+
+    font-size: 20px;
+}
+
+
+.reading {
+    margin: 10px 0;
+}
+
+.reading span {
+    font-size: 65px;
+    font-weight: 700;
+    color: #172033;
+}
+
+.reading small {
+    color: #7c8796;
+    font-size: 17px;
+}
+
+
+.quality-badge {
+    display: inline-block;
+
+    padding: 7px 15px;
+
+    border-radius: 20px;
+
+    background: #e4f7f1;
+    color: #178f70;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* ================= COORDINATES ================= */
+
+.coordinates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+}
+
+.coordinates div {
+    background: #f7f9fb;
+
+    padding: 15px;
+
+    border-radius: 12px;
+}
+
+.coordinates small {
+    display: block;
+
+    color: #8b94a3;
+
+    font-size: 10px;
+
+    margin-bottom: 5px;
+}
+
+.coordinates strong {
+    font-size: 14px;
+}
+
+
+/* ================= ERROR ================= */
+
+#errorState {
+    text-align: center;
+    padding-top: 60px;
+}
+
+.error-icon {
+    font-size: 50px;
+    color: #d9534f;
+    margin-bottom: 15px;
+}
+
+#errorState p {
+    color: #7b8494;
+}
+
+
+/* ================= INFO ================= */
+
+.info-section {
+    padding: 90px 0;
+    background: white;
+}
+
+.section-label {
+    color: #178f70;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+.section-description {
+    color: #7b8494;
+
+    max-width: 600px;
+
+    margin: 15px auto;
+}
+
+
+.info-card {
+    height: 100%;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    background: #f8fafc;
+
+    border: 1px solid #edf0f3;
+
+    transition: 0.3s;
+}
+
+.info-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow: 0 15px 35px rgba(20, 50, 80, 0.08);
+}
+
+.info-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #e4f7f1;
+    color: #178f70;
+
+    font-size: 25px;
+
+    margin-bottom: 20px;
+}
+
+.info-card h4 {
+    font-size: 19px;
+}
+
+.info-card p {
+    color: #7b8494;
+
+    line-height: 1.7;
+
+    margin-bottom: 0;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #0f2942;
+
+    color: #aebdca;
+
+    padding: 25px 0;
+
+    font-size: 14px;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .input-group {
+        display: block;
+    }
+
+    .input-group-text {
+        display: none;
+    }
+
+    .form-control {
+        width: 100% !important;
+
+        padding: 13px;
+
+        margin-bottom: 8px;
+    }
+
+    .search-btn {
+        width: 100%;
+    }
+
+    .air-card {
+        padding: 28px;
+    }
+
+    .reading span {
+        font-size: 52px;
+    }
+}

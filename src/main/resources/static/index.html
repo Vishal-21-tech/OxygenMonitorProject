@@ -3,28 +3,386 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air Quality Monitor</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 720px; margin: 60px auto; padding: 20px; }
-        .card { padding: 28px; border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,.10); }
-        input, button { padding: 12px; font-size: 16px; }
-        input { width: 60%; }
-        button { cursor: pointer; }
-        #result { margin-top: 22px; line-height: 1.7; }
-        .error { color: #b00020; }
-        .success { color: #166534; }
-    </style>
+
+    <title>AirSense | Air Quality Monitor</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="card">
-    <h1>Air Quality Monitor</h1>
-    <p>Enter a city to retrieve its current ozone (O₃) concentration.</p>
 
-    <input type="text" id="city" placeholder="Enter city name" autocomplete="off">
-    <button id="checkButton" onclick="fetchOxygenLevel()">Check</button>
+<!-- ================= NAVBAR ================= -->
 
-    <div id="result">-</div>
-</div>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="#">
+            <i class="bi bi-cloud-sun me-2"></i>
+            AirSense
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <span class="badge rounded-pill mb-3">
+                    <i class="bi bi-broadcast me-1"></i>
+                    Live Air Monitoring
+                </span>
+
+                <h1>
+                    Check the air around
+                    <span>your city.</span>
+                </h1>
+
+                <p class="hero-text">
+                    Search any city to view its current atmospheric
+                    ozone (O₃) concentration using live environmental data.
+                </p>
+
+
+                <!-- SEARCH -->
+
+                <div class="search-box">
+
+                    <div class="input-group">
+
+                        <span class="input-group-text">
+                            <i class="bi bi-geo-alt"></i>
+                        </span>
+
+                        <input
+                                type="text"
+                                id="cityInput"
+                                class="form-control"
+                                placeholder="Enter city name e.g. Pune"
+                                autocomplete="off">
+
+                        <button
+                                id="searchBtn"
+                                class="btn search-btn"
+                                type="button">
+
+                            <i class="bi bi-search me-1"></i>
+                            Check Air
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK CITY BUTTONS -->
+
+                <div class="quick-cities mt-3">
+
+                    <small>Try:</small>
+
+                    <button class="city-btn">Pune</button>
+                    <button class="city-btn">Mumbai</button>
+                    <button class="city-btn">Delhi</button>
+                    <button class="city-btn">Bengaluru</button>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE CARD -->
+
+            <div class="col-lg-6 mt-5 mt-lg-0">
+
+                <div class="air-card">
+
+                    <!-- INITIAL STATE -->
+
+                    <div id="welcomeState">
+
+                        <div class="weather-icon">
+                            <i class="bi bi-cloud-sun"></i>
+                        </div>
+
+                        <h3>Air Quality Monitor</h3>
+
+                        <p>
+                            Enter a city to check its current
+                            atmospheric ozone concentration.
+                        </p>
+
+                    </div>
+
+
+                    <!-- LOADING -->
+
+                    <div id="loadingState" class="d-none">
+
+                        <div class="spinner-border mb-3" role="status"></div>
+
+                        <h4>Checking air quality...</h4>
+
+                        <p>Please wait while we fetch live data.</p>
+
+                    </div>
+
+
+                    <!-- RESULT -->
+
+                    <div id="resultState" class="d-none">
+
+                        <div class="d-flex justify-content-between align-items-start">
+
+                            <div>
+
+                                <p class="result-label">
+                                    CURRENT LOCATION
+                                </p>
+
+                                <h3 id="cityName">
+                                    Pune
+                                </h3>
+
+                            </div>
+
+                            <div class="location-icon">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+
+                        </div>
+
+
+                        <hr>
+
+
+                        <p class="result-label">
+                            OZONE CONCENTRATION
+                        </p>
+
+                        <div class="reading">
+
+                            <span id="ozoneValue">
+                                0
+                            </span>
+
+                            <small>
+                                µg/m³
+                            </small>
+
+                        </div>
+
+
+                        <div id="qualityBadge"
+                             class="quality-badge">
+
+                            Air Data
+
+                        </div>
+
+
+                        <div class="coordinates mt-4">
+
+                            <div>
+                                <small>LATITUDE</small>
+                                <strong id="latitude">--</strong>
+                            </div>
+
+                            <div>
+                                <small>LONGITUDE</small>
+                                <strong id="longitude">--</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ERROR -->
+
+                    <div id="errorState" class="d-none">
+
+                        <div class="error-icon">
+
+                            <i class="bi bi-exclamation-circle"></i>
+
+                        </div>
+
+                        <h4>Unable to get data</h4>
+
+                        <p id="errorMessage">
+                            Please check the city name and try again.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= INFORMATION ================= -->
+
+<section class="info-section" id="about">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <p class="section-label">
+                AIR QUALITY
+            </p>
+
+            <h2>
+                Understand your air
+            </h2>
+
+            <p class="section-description">
+                AirSense uses environmental data to provide
+                atmospheric ozone information for your selected city.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        <i class="bi bi-cloud-haze2"></i>
+                    </div>
+
+                    <h4>Ozone Monitoring</h4>
+
+                    <p>
+                        View atmospheric O₃ concentration
+                        for your selected location.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        <i class="bi bi-lightning-charge"></i>
+                    </div>
+
+                    <h4>Live API Data</h4>
+
+                    <p>
+                        Environmental information is retrieved
+                        through your Spring Boot REST API.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        <i class="bi bi-phone"></i>
+                    </div>
+
+                    <h4>Responsive Design</h4>
+
+                    <p>
+                        The interface automatically adjusts
+                        for desktop, tablet and mobile screens.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container text-center">
+
+        <p class="mb-0">
+            <i class="bi bi-cloud-sun me-1"></i>
+            AirSense — Air Quality Monitoring System
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Our JS -->
+
 <script src="script.js"></script>
+
 </body>
 </html>
