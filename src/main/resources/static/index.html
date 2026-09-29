@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oxygen Level Checker</title>
+    <title>Air Quality Monitor</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 720px; margin: 60px auto; padding: 20px; }
+        .card { padding: 28px; border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,.10); }
+        input, button { padding: 12px; font-size: 16px; }
+        input { width: 60%; }
+        button { cursor: pointer; }
+        #result { margin-top: 22px; line-height: 1.7; }
+        .error { color: #b00020; }
+        .success { color: #166534; }
+    </style>
 </head>
 <body>
+<div class="card">
+    <h1>Air Quality Monitor</h1>
+    <p>Enter a city to retrieve its current ozone (O₃) concentration.</p>
 
-<h2>Check Oxygen Level by City</h2>
+    <input type="text" id="city" placeholder="Enter city name" autocomplete="off">
+    <button id="checkButton" onclick="fetchOxygenLevel()">Check</button>
 
-<label for="city">Enter City:</label>
-<input type="text" id="city" placeholder="Enter city name">
-<button onclick="fetchOxygenLevel()">Get Oxygen Level</button>
-
-<h3>Oxygen Level:</h3>
-<p id="result">-</p>
-
+    <div id="result">-</div>
+</div>
 <script src="script.js"></script>
 </body>
 </html>

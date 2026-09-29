@@ -1,23 +1,50 @@
 package oxy_project.OxygenMonitor.model;
 
 public class OxygenData {
-    private Long id;
     private String city;
-    private double oxygenLevel;
+    private double ozone;
+    private String unit;
+    private String description;
 
-    // Constructor
-    public OxygenData(String city, double oxygenLevel) {
-        this.city = city;
-        this.oxygenLevel = oxygenLevel;
+    public OxygenData() {
     }
 
-    // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public OxygenData(String city, double ozone, String unit, String description) {
+        this.city = city;
+        this.ozone = ozone;
+        this.unit = unit;
+        this.description = description;
+    }
 
-    public String getCity() { return city; }
-    public void setCity(String city) { this.city = city; }
+    public String getCity() {
+        return city;
+    }
 
-    public double getOxygenLevel() { return oxygenLevel; }
-    public void setOxygenLevel(double oxygenLevel) { this.oxygenLevel = oxygenLevel; }
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public double getOzone() {
+        return ozone;
+    }
+
+    public void setOzone(double ozone) {
+        this.ozone = ozone;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

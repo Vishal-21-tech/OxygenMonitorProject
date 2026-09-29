@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class OxygenMonitorApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(OxygenMonitorApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OxygenMonitorApplication.class, args);
+    }
 }
